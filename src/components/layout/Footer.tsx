@@ -1,17 +1,26 @@
 
-import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="bg-estate-950 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and info */}
           <div className="space-y-4">
-            <Link to="/" className="text-2xl font-bold text-white">
+            <button 
+              onClick={() => scrollToSection("hero")}
+              className="text-2xl font-display font-bold text-white cursor-pointer"
+            >
               B-ESTATES
-            </Link>
+            </button>
             <p className="text-estate-300 max-w-xs">
               Dedicated to helping individuals, families, and investors navigate the real estate market with confidence.
             </p>
@@ -41,14 +50,19 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">Quick Links</h3>
             <ul className="mt-4 space-y-2">
-              {["Home", "Services", "About Us", "Contact Us"].map((item) => (
-                <li key={item}>
-                  <Link 
-                    to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="text-estate-300 hover:text-white transition-colors"
+              {[
+                { name: "Home", section: "hero" },
+                { name: "Services", section: "services" },
+                { name: "About Us", section: "about" },
+                { name: "Contact Us", section: "contact" }
+              ].map((item) => (
+                <li key={item.name}>
+                  <button 
+                    onClick={() => scrollToSection(item.section)}
+                    className="text-estate-300 hover:text-white transition-colors cursor-pointer"
                   >
-                    {item}
-                  </Link>
+                    {item.name}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -59,17 +73,17 @@ export default function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-wider">Services</h3>
             <ul className="mt-4 space-y-2">
               {[
-                { name: "Residential Real Estate", path: "/services/residential" },
-                { name: "Commercial Real Estate", path: "/services/commercial" },
-                { name: "Pre-Construction Developments", path: "/services/pre-construction" }
+                "Residential Real Estate",
+                "Commercial Real Estate",
+                "Pre-Construction Developments"
               ].map((service) => (
-                <li key={service.name}>
-                  <Link 
-                    to={service.path}
-                    className="text-estate-300 hover:text-white transition-colors"
+                <li key={service}>
+                  <button 
+                    onClick={() => scrollToSection("services")}
+                    className="text-estate-300 hover:text-white transition-colors cursor-pointer"
                   >
-                    {service.name}
-                  </Link>
+                    {service}
+                  </button>
                 </li>
               ))}
             </ul>

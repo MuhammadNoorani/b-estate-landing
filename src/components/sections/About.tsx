@@ -73,11 +73,11 @@ export default function About() {
           
           <div className="absolute -bottom-8 -right-8 w-64 p-6 rounded-xl bg-white shadow-xl">
             <div className="flex flex-col space-y-1 mb-2">
-              <span className="text-5xl font-bold text-primary">15+</span>
-              <span className="text-lg font-medium text-estate-700">Years of Experience</span>
+              <span className="text-5xl font-bold text-primary">Quality</span>
+              <span className="text-lg font-medium text-estate-700">Service & Excellence</span>
             </div>
             <p className="text-estate-600 text-sm">
-              We've been helping clients achieve their real estate goals since 2009.
+              Our commitment to excellence ensures your real estate journey exceeds expectations.
             </p>
           </div>
         </div>

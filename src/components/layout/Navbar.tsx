@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -20,6 +19,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    setIsMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -30,25 +37,30 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <Link 
-            to="/" 
-            className="text-2xl font-bold text-estate-950"
+          <button 
+            onClick={() => scrollToSection("hero")}
+            className="text-2xl font-display font-bold text-estate-950 cursor-pointer"
           >
             B-ESTATES
-          </Link>
+          </button>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            {["Home", "Services", "About Us", "Contact Us"].map((item) => (
-              <Link
-                key={item}
-                to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s+/g, "-")}`}
+            {[
+              { name: "Home", section: "hero" },
+              { name: "Services", section: "services" },
+              { name: "About Us", section: "about" },
+              { name: "Contact Us", section: "contact" }
+            ].map((item) => (
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.section)}
                 className={`font-medium transition-colors hover:text-primary ${
                   isScrolled ? "text-estate-800" : "text-estate-900"
                 }`}
               >
-                {item}
-              </Link>
+                {item.name}
+              </button>
             ))}
           </nav>
 
@@ -72,16 +84,20 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden bg-white">
           <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
-            {["Home", "Services", "About Us", "Contact Us"].map((item, index) => (
-              <Link
-                key={item}
-                to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s+/g, "-")}`}
-                className="block px-3 py-2 rounded-md text-base font-medium text-estate-900 hover:bg-estate-50 hover:text-primary transition-colors"
+            {[
+              { name: "Home", section: "hero" },
+              { name: "Services", section: "services" },
+              { name: "About Us", section: "about" },
+              { name: "Contact Us", section: "contact" }
+            ].map((item, index) => (
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.section)}
+                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-estate-900 hover:bg-estate-50 hover:text-primary transition-colors animate-fade-in"
                 style={{ animationDelay: `${index * 50}ms` }}
-                onClick={() => setIsMenuOpen(false)}
               >
-                {item}
-              </Link>
+                {item.name}
+              </button>
             ))}
           </div>
         </div>

@@ -1,10 +1,16 @@
 
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 
 export default function Hero() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden">
+    <section id="hero" className="relative pt-24 pb-20 md:pt-32 md:pb-28 overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,hsl(0,0%,97%),hsl(210,40%,98%))]" />
       <div className="absolute inset-y-0 right-0 -z-10 w-full lg:w-1/2 bg-gradient-to-r from-transparent to-primary/5" />
@@ -23,13 +29,19 @@ export default function Hero() {
               Buy, Sell & Lease Residential, Commercial & Pre-Construction Properties in Canada.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact-us" className="btn-primary">
+              <button 
+                onClick={() => scrollToSection("contact")} 
+                className="btn-primary"
+              >
                 Contact Us
-              </Link>
-              <Link to="/services" className="btn-outline flex items-center group">
+              </button>
+              <button 
+                onClick={() => scrollToSection("services")} 
+                className="btn-outline flex items-center group"
+              >
                 Explore Our Services
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+              </button>
             </div>
           </div>
           
