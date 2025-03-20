@@ -54,7 +54,7 @@ export default function ContactForm({ defaultService = "Buy Property" }: Contact
             name="service"
             value={formData.service}
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg border border-estate-200 focus:ring-2 focus:ring-primary/30 focus:border-primary transition duration-150 outline-none"
+            className="w-full px-4 py-3 rounded-lg border border-estate-200 focus:ring-2 focus:ring-primary/30 focus:border-primary transition duration-150 outline-none bg-white"
             required
           >
             <option value="Buy Property">Buy Property</option>
@@ -68,34 +68,36 @@ export default function ContactForm({ defaultService = "Buy Property" }: Contact
           </select>
         </div>
         
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-estate-700 mb-1">
-            Full Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="John Doe"
-            className="w-full px-4 py-3 rounded-lg border border-estate-200 focus:ring-2 focus:ring-primary/30 focus:border-primary transition duration-150 outline-none"
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-estate-700 mb-1">
-            Phone Number
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            placeholder="+123 456 789 00"
-            className="w-full px-4 py-3 rounded-lg border border-estate-200 focus:ring-2 focus:ring-primary/30 focus:border-primary transition duration-150 outline-none"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-estate-700 mb-1">
+              Full Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="John Doe"
+              className="w-full px-4 py-3 rounded-lg border border-estate-200 focus:ring-2 focus:ring-primary/30 focus:border-primary transition duration-150 outline-none"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-estate-700 mb-1">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="+123 456 789 00"
+              className="w-full px-4 py-3 rounded-lg border border-estate-200 focus:ring-2 focus:ring-primary/30 focus:border-primary transition duration-150 outline-none"
+            />
+          </div>
         </div>
         
         <div>
@@ -134,7 +136,7 @@ export default function ContactForm({ defaultService = "Buy Property" }: Contact
       <button
         type="submit"
         disabled={loading}
-        className="w-full btn-primary flex items-center justify-center"
+        className="w-full btn-primary flex items-center justify-center py-4 text-base"
       >
         {loading ? (
           <>
